@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Examen1_PM_II.Views.EmpleadoPage"
+             Title="Agregar Empleado">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Frame CornerRadius="10" Padding="0" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center">
+                <Image x:Name="ImgFoto" 
+                       Source="placeholder.png" 
+                       Aspect="AspectFill" 
+                       HeightRequest="150" 
+                       WidthRequest="150"/>
+            </Frame>
+
+            <Button Text="Seleccionar Foto" Clicked="OnSeleccionarFotoClicked" HorizontalOptions="Center" />
+
+            <Entry x:Name="TxtNombre" Placeholder="Nombre Completo" />
+            <DatePicker x:Name="DpFechaIngreso" Format="D" />
+            <Entry x:Name="TxtPuesto" Placeholder="Puesto" />
+            <Entry x:Name="TxtCorreo" Placeholder="Correo Electrónico" Keyboard="Email" />
+
+            <Button Text="Guardar Empleado" Clicked="OnGuardarClicked" Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

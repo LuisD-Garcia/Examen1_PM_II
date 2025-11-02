@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Examen1_PM_II.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Examen1_PM_II.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Examen1_PM_II">
+
+    <ShellContent
+        Title="Empleados"
+        ContentTemplate="{DataTemplate local:ListaEmpleadoPage}"
+        Route="ListaEmpleadoPage" />
+
+</Shell>
