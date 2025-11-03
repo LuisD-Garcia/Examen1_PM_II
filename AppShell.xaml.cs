@@ -8,7 +8,7 @@ namespace Examen1_PM_II
         {
             InitializeComponent();
 
-            // Registra la ruta para poder navegar desde cualquier parte.
+            // Registra la ruta para poder navegar desde cualquier parte
             Routing.RegisterRoute(nameof(EmpleadoPage), typeof(EmpleadoPage));
         }
     }
