@@ -60,13 +60,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+	  <AndroidResource Remove="Controllers\**" />
+	  <Compile Remove="Controllers\**" />
+	  <EmbeddedResource Remove="Controllers\**" />
+	  <MauiCss Remove="Controllers\**" />
+	  <MauiXaml Remove="Controllers\**" />
+	  <None Remove="Controllers\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controllers\" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 	</ItemGroup>
 
 	<ItemGroup>

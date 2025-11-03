@@ -16,14 +16,29 @@ namespace Examen1_PM_II.Views
             DpFechaIngreso.Date = DateTime.Today; // Establece la fecha de hoy por defecto
         }
 
+        // Método para seleccionar una foto de la galería
         private async void OnSeleccionarFotoClicked(object sender, EventArgs e)
+        {
+            await ProcessPhoto(MediaPicker.PickPhotoAsync);
+        }
+
+        // *************** NUEVO MÉTODO ***************
+        // Método para tomar una foto con la cámara
+        private async void OnTomarFotoClicked(object sender, EventArgs e)
+        {
+            // Se usa CapturePhotoAsync para abrir la cámara
+            await ProcessPhoto(MediaPicker.CapturePhotoAsync);
+        }
+
+        // Método auxiliar genérico para procesar la foto (ya sea seleccionada o tomada)
+        private async Task ProcessPhoto(Func<MediaPickerOptions?, Task<FileResult>> photoAction)
         {
             try
             {
-                // Pide al usuario que seleccione un archivo de imagen
-                var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                // La acción a ejecutar (PickPhotoAsync o CapturePhotoAsync)
+                var result = await photoAction(new MediaPickerOptions
                 {
-                    Title = "Por favor selecciona una foto de empleado"
+                    Title = "Por favor selecciona o toma una foto de empleado"
                 });
 
                 if (result != null)
@@ -48,7 +63,8 @@ namespace Examen1_PM_II.Views
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"No se pudo seleccionar la foto: {ex.Message}", "OK");
+                // Manejo de excepciones, por ejemplo, si el usuario deniega permisos de cámara
+                await DisplayAlert("Error", $"No se pudo completar la acción de la foto: {ex.Message}", "OK");
             }
         }
 
@@ -56,7 +72,7 @@ namespace Examen1_PM_II.Views
         {
             if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPuesto.Text) || string.IsNullOrWhiteSpace(_fotoBase64))
             {
-                await DisplayAlert("Advertencia", "Asegúrate de llenar el nombre, puesto y seleccionar una foto.", "OK");
+                await DisplayAlert("Advertencia", "Asegúrate de llenar el nombre, puesto y seleccionar/tomar una foto.", "OK");
                 return;
             }
 

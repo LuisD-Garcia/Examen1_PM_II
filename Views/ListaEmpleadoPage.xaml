@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Examen1_PM_II.Views.ListaEmpleadoPage"
              xmlns:converters="clr-namespace:Examen1_PM_II.Converters"
-             Title="Lista de Empleados">
-
+             Title="Empleados Registrados"
+             BackgroundColor="#EFEFEF">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Agregar" Clicked="OnAgregarClicked" IconImageSource="plus.png" />
     </ContentPage.ToolbarItems>
@@ -14,30 +14,67 @@
     </ContentPage.Resources>
 
     <RefreshView x:Name="RefreshControl" IsRefreshing="{Binding IsBusy}" Refreshing="OnRefreshViewRefreshing">
-        <CollectionView x:Name="ListaEmpleados" SelectionMode="None">
+        <CollectionView x:Name="ListaEmpleados" SelectionMode="None" Margin="10">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" Margin="5" CornerRadius="5" HasShadow="True">
-                        <Grid ColumnDefinitions="70, Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
+                    <Frame Padding="15" 
+                           Margin="0, 8, 0, 8" 
+                           CornerRadius="10" 
+                           BackgroundColor="White"
+                           BorderColor="Transparent"
+                           HasShadow="False">
+                        <Frame.Shadow>
+                            <Shadow Brush="Gray" Offset="3,3" Radius="8" Opacity="0.4"/>
+                        </Frame.Shadow>
+                        <Grid ColumnDefinitions="70, 10, *" RowDefinitions="Auto, Auto, Auto, Auto">
 
-                            <Image Grid.RowSpan="4" 
-                                   Source="{Binding Foto, Converter={StaticResource Base64ToImageSourceConverter}}" 
-                                   Aspect="AspectFill" 
-                                   HeightRequest="60" 
-                                   WidthRequest="60" 
-                                   VerticalOptions="Center" />
+                            <Frame Grid.RowSpan="4"
+                                   Padding="0"
+                                   CornerRadius="30"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   IsClippedToBounds="True"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Start"
+                                   BorderColor="#03A9F4"
+                                   BackgroundColor="Transparent"
+                                   HasShadow="False">
+                                <Image Source="{Binding Foto, Converter={StaticResource Base64ToImageSourceConverter}}" 
+                                       Aspect="AspectFill" 
+                                       HeightRequest="60" 
+                                       WidthRequest="60"/>
+                            </Frame>
 
-                            <Label Grid.Column="1" Grid.Row="0" Text="Nombre:" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Label Grid.Column="2" Grid.Row="0" Text="{Binding Nombre}" VerticalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="2" Spacing="5" Margin="0,5,0,0">
 
-                            <Label Grid.Column="1" Grid.Row="1" Text="Puesto:" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding Puesto}" VerticalOptions="Center" />
+                                <Label Text="{Binding Nombre}" 
+                                       FontSize="Medium" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#333333"/>
 
-                            <Label Grid.Column="1" Grid.Row="2" Text="Correo:" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Label Grid.Column="2" Grid.Row="2" Text="{Binding Correo}" VerticalOptions="Center" />
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="{Binding Puesto}" 
+                                           FontSize="Small" 
+                                           TextColor="#03A9F4" 
+                                           FontAttributes="Italic"/>
+                                    <Label Text="|" 
+                                           FontSize="Small" 
+                                           TextColor="#AAAAAA"/>
+                                    <Label Text="{Binding Correo}" 
+                                           FontSize="Small" 
+                                           TextColor="#666666"/>
+                                </HorizontalStackLayout>
 
-                            <Label Grid.Column="1" Grid.Row="3" Text="Ingreso:" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Label Grid.Column="2" Grid.Row="3" Text="{Binding Fecha_ingreso, StringFormat='{0:dd/MM/yyyy}'}" VerticalOptions="Center" />
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Ingreso:" 
+                                           FontSize="Small" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#666666"/>
+                                    <Label Text="{Binding Fecha_ingreso, StringFormat='{0:dd/MM/yyyy}'}" 
+                                           FontSize="Small" 
+                                           TextColor="#333333"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
 
                         </Grid>
                     </Frame>
